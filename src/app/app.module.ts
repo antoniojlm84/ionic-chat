@@ -11,18 +11,38 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { UsersProvider } from '../providers/users/users';
 import { HttpClientModule } from '@angular/common/http';
+import { MessagesProvider } from '../providers/messages/messages';
+import { AngularFirestoreModule } from "angularfire2/firestore";
+import { AngularFireModule } from "angularfire2";
+import { BoardComponent } from "../components/board/board";
+import {TextComponent} from "../components/text/text";
+import {ReactiveFormsModule} from "@angular/forms";
+
+const firebase = {
+    apiKey: "AIzaSyCqDO86i1EZQPpN-zwW906xDajCN9d31VY",
+    authDomain: "angular2-curso-ae117.firebaseapp.com",
+    databaseURL: "https://angular2-curso-ae117.firebaseio.com",
+    projectId: "angular2-curso-ae117",
+    storageBucket: "angular2-curso-ae117.appspot.com",
+    messagingSenderId: "704159780117"
+};
 
 @NgModule({
   declarations: [
     MyApp,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    BoardComponent,
+    TextComponent
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
+    AngularFireModule.initializeApp(firebase),
+    AngularFirestoreModule,
+    ReactiveFormsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -35,7 +55,8 @@ import { HttpClientModule } from '@angular/common/http';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UsersProvider
+    UsersProvider,
+    MessagesProvider
   ]
 })
 export class AppModule {}

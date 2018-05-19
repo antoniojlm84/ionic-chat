@@ -1,0 +1,21 @@
+<div id="js-table-board">
+  <div *ngFor="let message of messages | async ; index as i;">
+
+    <ion-card>
+      <ion-card-header>
+        <img src="/assets/images/icon.png" class="icon_read" *ngIf="message.read">
+        <strong>{{ message.username }}</strong> <small>({{ message.timestamp | date:'MM/dd/yyyy' }})</small>
+      </ion-card-header>
+      <ion-card-content>
+        {{ message.message }}
+      </ion-card-content>
+    </ion-card>
+
+    <!--<div [class.back_blue]="i%2===0" class="message" (click)="markAsRead(i)">
+      <img src="/assets/images/icon.png" class="icon_read" *ngIf="message.read">
+      <strong>{{ message.username }}</strong> <small>({{ message.date }})</small>
+      <br><br>
+      {{ message.message }}
+    </div>-->
+  </div>
+</div>

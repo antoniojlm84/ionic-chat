@@ -1,47 +1,40 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import {
-    trigger,
-    state,
-    style,
-    animate,
-    transition,
-    group
-} from '@angular/animations';
+import { LoadingController, NavController } from 'ionic-angular';
 import { UsersProvider } from '../../providers/users/users';
+import { HomePage } from "../home/home";
 
 @Component({
     selector: 'page-contact',
     templateUrl: 'contact.html',
-    animations: [
-        trigger('flyInOut', [
-            state('false', style({
-                opacity: 1,
-                height: '256px'
-            })),
-            state('true', style({
-                opacity: 0,
-                height: '0px'
-            })),
-            transition('false => true', animate('1000ms ease-in')),
-        ])
-    ]
 })
 export class ContactPage {
 
     users: any;
     isLoading: boolean;
+    loading: any;
+    homePage: any;
 
-    constructor(public navCtrl: NavController, private userService: UsersProvider) {
-      this.isLoading = false;
-      this.userService.getUsers().subscribe(users => {
-          console.log(users);
-          this.isLoading = true;
-          this.users = users['results'];
-      });
+    constructor(public navCtrl: NavController, private userService: UsersProvider, public loadingCtrl: LoadingController) {
+
+        this.loading = this.loadingCtrl.create({
+            content: 'Please wait...'
+        });
+
+        this.loading.present();
+
+        this.isLoading = false;
+        this.userService.getUsers().subscribe(users => {
+            console.log(users);
+            this.isLoading = true;
+            this.users = users['results'];
+            this.loading.dismiss();
+        });
+
+        this.homePage = HomePage;
     }
 
     eventLogin(user) {
         this.userService.setUserLogged(user);
+        this.navCtrl.setRoot(HomePage);
     }
 }

@@ -1,0 +1,35 @@
+<!-- Footer -->
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>
+      <div *ngIf="loggedUser == ''">
+        <p><a ion-button [navPush]="contactPage">Login</a></p>
+      </div>
+      <ion-card *ngIf="loggedUser != ''">
+        <ion-item>
+          <ion-avatar item-start>
+            <img src="{{ loggedUser?.picture?.thumbnail }}" width="48px">
+          </ion-avatar>
+          <h2>{{ loggedUser?.name?.last }}, {{ loggedUser?.name?.first }}</h2>
+          <p>{{ loggedUser?.email }}</p>
+
+          <small>Change user <a [navPush]="contactPage">here</a></small>
+        </ion-item>
+      </ion-card>
+
+      <!-- Text messages sender -->
+      <div *ngIf="loggedUser != ''">
+        <form (ngSubmit)="submmitted()" #sendMsgForm="ngForm" >
+          <ion-item>
+            <ion-label floating>Message</ion-label>
+            <ion-textarea required [(ngModel)]="message" name="message" id="message" rows="5" maxLength="200"></ion-textarea>
+          </ion-item>
+
+          <input type="submit" ion-button value="{{ buttonLabel }}">
+        </form>
+        <p *ngIf="!sendMsgForm.valid" class="alert alert-danger">Message can not be empty</p>
+      </div>
+
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

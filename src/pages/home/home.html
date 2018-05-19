@@ -7,37 +7,11 @@
 <ion-content padding>
   <ion-list>
 
-    <div id="js-table-board">
-      <div *ngFor="let message of messages | async ; index as i;">
+    <!-- Messages container -->
+    <chat-board [messages]="messages"></chat-board>
 
-        <ion-card>
-          <ion-card-header>
-            <img src="/assets/images/icon.png" class="icon_read" *ngIf="message.read">
-            <strong>{{ message.username }}</strong> <small>({{ message.date }})</small>
-          </ion-card-header>
-          <ion-card-content>
-            {{ message.message }}
-          </ion-card-content>
-        </ion-card>
-
-        <!--<div [class.back_blue]="i%2===0" class="message" (click)="markAsRead(i)">
-          <img src="/assets/images/icon.png" class="icon_read" *ngIf="message.read">
-          <strong>{{ message.username }}</strong> <small>({{ message.date }})</small>
-          <br><br>
-          {{ message.message }}
-        </div>-->
-      </div>
-    </div>
-
-    <ion-item>
-      <ion-label floating>Username</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-
-    <ion-item>
-      <ion-label floating>Message</ion-label>
-      <ion-textarea id="message" rows="5" maxLength="200"></ion-textarea>
-    </ion-item>
+    <!-- Input component -->
+    <chat-text [loggedUser]="loggedUser" (onClick)="add($event)"></chat-text>
 
   </ion-list>
 </ion-content>
