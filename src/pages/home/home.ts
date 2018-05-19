@@ -1,7 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import { NavController } from 'ionic-angular';
-//import {MessagesService} from '../providers/messages.service';
-import { Observable } from "rxjs/Observable";
 import 'rxjs/add/observable/of';
 import { AngularFirestore } from "angularfire2/firestore";
 import { UsersProvider } from "../../providers/users/users";
@@ -33,5 +31,4 @@ export class HomePage implements OnInit{
            username: 'Toño'
         });
     }
-
 }

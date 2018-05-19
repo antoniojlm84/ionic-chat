@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import{ ContactPage } from "../../pages/contact/contact";
 /**
  * Generated class for the TextComponent component.
@@ -14,8 +14,9 @@ export class TextComponent {
 
     message: string;
     buttonLabel: string;
-    @Input() loggedUser: any;
     contactPage: any;
+    @Input() loggedUser: any;
+    @Output() onClick = new EventEmitter<any>();
 
     constructor() {
         this.buttonLabel = 'Send';
@@ -26,13 +27,19 @@ export class TextComponent {
         const msgDate = new Date();
         const dateText = `${msgDate.getDay()}-${msgDate.getMonth() + 1}-${msgDate.getFullYear()} ${msgDate.getHours()}:${msgDate.getMinutes()}`;
 
+        this.onClick.emit( this.message )
+
+        // TODO: hacer que se use el message service
         /*const message: MessageInterface = {
             username: this.loggedUser['name']['last'] + ', ' + this.loggedUser['name']['first'],
             message: this.message,
             date: dateText,
             read: false
-        };
+        };*/
 
-        this.messageService.pushMessage(message);*/
+        //const message = {}
+
+        //this.messageService.pushMessage(message);
+
     };
 }
