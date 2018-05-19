@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Contacts
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="isLoading==true">
+    <ion-item *ngFor="let user of users">
+      <ion-thumbnail item-start>
+        <img src="{{ user?.picture?.thumbnail }}" width="48px">
+      </ion-thumbnail>
+      <h2>{{ user['name']['last'] }},{{ user['name']['first'] }}</h2>
+      <p>{{ user['email'] }}</p>
+      <button ion-button clear item-end (click)="eventLogin(user)">Login</button>
+    </ion-item>
+  </ion-list>
+</ion-content>
