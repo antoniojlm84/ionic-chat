@@ -28,7 +28,7 @@ export class HomePage implements OnInit{
         this.fbCollection.add({
            message: event,
            timestamp: new Date().getTime(),
-           username: 'Toño'
+           username: (this.loggedUser['name']['first'] + ' ' + this.loggedUser['name']['last'])
         });
     }
 }
