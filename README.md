@@ -1,2 +1,2 @@
 # ionic-chat
-Chat project whit Ionic
+Chat project whith Ionic
